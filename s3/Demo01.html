@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo01</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          isAnimate: true
+        }
+      },
+      methods: {
+        handleClick() {
+          this.isAnimate = !this.isAnimate
+        }
+      },
+      template: `
+        <div :class="{'animation': isAnimate}">javascript高级程序设计</div>
+        <div><button @click="handleClick">启动/停止</button></div>
+      `
+    })
+    const vm = app.mount('#app')
+  </script>
+
+  <style>
+    .animation {
+      animation: leftToRight 3s;
+    }
+
+    @keyframes leftToRight {
+      0% {
+        transform: translateX(0px);
+      }
+
+      25% {
+        transform: translateX(25px);
+      }
+
+      50% {
+        transform: translateX(50px);
+      }
+
+      75% {
+        transform: translateX(25px);
+      }
+
+      100% {
+        transform: translateX(0px);
+      }
+    }
+  </style>
+</body>
+
+</html>
