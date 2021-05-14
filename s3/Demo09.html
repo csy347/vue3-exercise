@@ -1,0 +1,167 @@
+<!--
+  为了解决动画同时发生的问题，引入了mode属性
+  mode="in-out"
+  mode="out-in"
+
+  刚进入页面时，开始就产生动画效果，可以加上appear属性来实现
+ -->
+
+<!--
+   动态组件切换效果 :is 来进行绑定
+  -->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo09</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    const component1 = {
+      template: `<div>component1</div>`
+    }
+    const component2 = {
+      template: `<div>component2</div>`
+    }
+    const app = Vue.createApp({
+      data() {
+        return {
+          isShow: false
+        }
+      },
+      components: {
+        'component-1': component1,
+        'component-2': component2
+      },
+      methods: {
+        handleClick() {
+          this.isShow = !this.isShow
+        }
+      },
+      template: `
+        <transition mode="out-in" appear>
+          <component-1 v-if="isShow" />
+          <component-2 v-else />
+        </transition>
+        <div><button @click="handleClick">切换动画</button></div>
+      `
+    })
+    const vm = app.mount('#app')
+  </script>
+
+  <style>
+    .v-enter-from {
+      opacity: 0;
+    }
+
+    .v-enter-to {
+      opacity: 1;
+    }
+
+    .v-enter-active {
+      transition: opacity 2s ease-in;
+    }
+
+    .v-leave-from {
+      opacity: 1;
+    }
+
+    .v-leave-to {
+      opacity: 0;
+    }
+
+    .v-leave-active {
+      transition: opacity 2s ease-in;
+    }
+  </style>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo09</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    const component1 = {
+      template: `<div>component1</div>`
+    }
+    const component2 = {
+      template: `<div>component2</div>`
+    }
+    const app = Vue.createApp({
+      data() {
+        return {
+          component: 'component-1'
+        }
+      },
+      components: {
+        'component-1': component1,
+        'component-2': component2
+      },
+      methods: {
+        handleClick() {
+          if (this.component === 'component-1') {
+            this.component = 'component-2'
+          } else if (this.component === 'component-2') {
+            this.component = 'component-1'
+          }
+          // this.component = this.component === 'component-1' ? 'component-2' : 'component-1'
+        }
+      },
+      template: `
+        <transition mode="out-in" appear>
+          <component :is="component" />
+        </transition>
+        <div><button @click="handleClick">切换动画</button></div>
+      `
+    })
+    const vm = app.mount('#app')
+  </script>
+
+  <style>
+    .v-enter-from {
+      opacity: 0;
+    }
+
+    .v-enter-to {
+      opacity: 1;
+    }
+
+    .v-enter-active {
+      transition: opacity 1s ease-in;
+    }
+
+    .v-leave-from {
+      opacity: 1;
+    }
+
+    .v-leave-to {
+      opacity: 0;
+    }
+
+    .v-leave-active {
+      transition: opacity 1s ease-in;
+    }
+  </style>
+</body>
+
+</html>

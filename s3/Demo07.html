@@ -1,0 +1,98 @@
+<!--
+  <transition :css="false"> 不使用CSS动画
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo07</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          isShow: false
+        }
+      },
+      methods: {
+        handleClick() {
+          this.isShow = !this.isShow
+        },
+        handleBeforeEnter() { },
+        handleEnter(element, done) {
+          const timer = setInterval(() => {
+            const color = element.style.color
+            if (color == 'red') {
+              element.style.color = 'green'
+            } else {
+              element.style.color = 'red'
+            }
+          }, 500)
+          setTimeout(() => {
+            clearInterval(timer)
+          }, 1500)
+        },
+        handleAfterEnter() { },
+        handleBeforeLeave() { },
+        handleLeave() { },
+        handleAfterLeave() { }
+      },
+      template: `
+        <transition
+          :css="false"
+          @before-enter="handleBeforeEnter"
+          @enter="handleEnter"
+          @after-enter="handleAfterEnter"
+          @before-leave="handleBeforeEnter"
+          @leave="handleLeave"
+          @after-leave="handleAfterLeave"
+        >
+          <div v-if="isShow">javascript高级程序设计</div>
+        </transition>
+        <div><button @click="handleClick">切换动画</button></div>
+      `
+    })
+    const vm = app.mount('#app')
+  </script>
+
+  <style>
+    /* 使用了 :css="false" 所以以下这些动画无效 可以删除 */
+    @keyframes come-in {
+      0% {
+        transform: translateX(-120px);
+      }
+
+      100% {
+        transform: translateX(0px);
+      }
+    }
+
+    .v-enter-active {
+      animation: come-in 1s;
+    }
+
+    @keyframes come-out {
+      0% {
+        transform: translateX(0px);
+      }
+
+      100% {
+        transform: translateX(-120px);
+      }
+    }
+
+    .v-leave-active {
+      animation: come-out 1s;
+    }
+  </style>
+</body>
+
+</html>

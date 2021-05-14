@@ -1,3 +1,13 @@
+<!--
+  方法一：给transition标签添加一个name ，如jsp; v-enter-active则改成jsp-enter-active
+  方法二：自行定义css选择名称 enter-active-class="come" leave-active-class="go"
+  方法三：使用第三方动画库
+    enter-active-class="animate__animated animate__bounce"
+    leave-active-class="animate__animated animate__bounce"
+-->
+
+<!-- ---Demo3：------------- -->
+
 <!-- <!DOCTYPE html>
 <html lang="en">
 
@@ -66,14 +76,7 @@
 
 </html> -->
 
-
-<!--
-  方法一：给transition标签添加一个name ，如jsp; v-enter-active则改成jsp-enter-active
-  方法二：自行定义css选择名称 enter-active-class="come" leave-active-class="go"
-  方法三：使用第三方动画库
-    enter-active-class="animate__animated animate__bounce"
-    leave-active-class="animate__animated animate__bounce"
--->
+<!-- ---方法一：------------- -->
 
 <!--
 <!DOCTYPE html>
@@ -145,6 +148,8 @@
 
 </html> -->
 
+<!-- ---方法二：------------- -->
+
 <!--
 <!DOCTYPE html>
 <html lang="en">
@@ -215,6 +220,8 @@
 
 </html> -->
 
+<!-- ---方法三：------------- -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -243,8 +250,8 @@
       },
       template: `
         <transition
-        enter-active-class="animate__animated animate__bounce"
-        leave-active-class="animate__animated animate__bounce"
+          enter-active-class="animate__animated animate__bounce"
+          leave-active-class="animate__animated animate__bounce"
         >
           <div v-if="isShow">javascript高级程序设计</div>
         </transition>
