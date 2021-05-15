@@ -1,0 +1,102 @@
+<!--
+  1. 使用变量 :class="classString"
+  2. 使用classObject, classArray
+  3. 还可以使用嵌套  classArray: ['green', 'background', { red: true }]
+ -->
+
+<!-- 1 ------------------------------------------------>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo14</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        classString: 'red' /* vm.$data.classString = 'green' */
+      }
+    },
+    template: `
+      <div :class="classString">JavaScript高级程序设计</div>
+    `
+  })
+
+  const vm = app.mount("#app")
+</script>
+
+<style>
+  .red {
+    color: red;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .background {
+    background-color: orange;
+  }
+</style>
+
+</html> -->
+
+<!-- 2 ------------------------------------------------>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo14</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        classString: 'red',
+        classObject: {
+          red: true,
+          background: true
+        },
+        classArray: ['green', 'background']
+      }
+    },
+    template: `
+      <div :class="classObject">JavaScript高级程序设计</div>
+    `
+  })
+
+  const vm = app.mount("#app")
+</script>
+
+<style>
+  .red {
+    color: red;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .background {
+    background-color: orange;
+  }
+</style>
+
+</html>
