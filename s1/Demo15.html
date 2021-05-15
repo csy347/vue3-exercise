@@ -1,0 +1,55 @@
+<!--
+  当子组件不是一个根元素的时候，可以使用$attrs.classs 直接绑定属性中的class
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo15</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        classArray: ['red', 'green', 'background']
+      }
+    },
+    template: `
+      <div :class="classArray">JavaScript高级程序设计</div>
+      <child class="green" />
+    `
+  })
+
+  app.component('child', {
+    template: `
+      <div>child</div>
+    `
+  })
+
+  const vm = app.mount("#app")
+</script>
+
+<style>
+  .red {
+    color: red
+  }
+
+  .green {
+    color: green
+  }
+
+  .background {
+    background-color: yellow;
+  }
+</style>
+
+</html>
