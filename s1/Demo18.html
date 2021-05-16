@@ -1,0 +1,92 @@
+<!--
+    v-for中使用判断
+    因为v-for循环的优先级高于v-if判断的优先级，所以v-if判断要写在单独的内部元素上
+ -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo18</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        listArray: ['zhagnsan', 'lisi', 'wangwu'],
+      }
+    },
+    methods: {
+      handleAdd() {
+        this.listArray.push('zhaoliu')
+      }
+    },
+    template: `
+      <ul>
+        <div
+          v-for="(item, index) in listArray"
+          :key="index+item"
+        >
+          <li v-if="item != 'lisi'">
+            {{index}} -- {{ item }}
+          </li>
+        </div>
+      </ul>
+    `
+    // 以上DOM结构不符合HTML语法
+  })
+
+  const vm = app.mount("#app")
+</script>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo18</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        listArray: ['zhagnsan', 'lisi', 'wangwu'],
+      }
+    },
+    methods: {
+      handleAdd() {
+        this.listArray.push('zhaoliu')
+      }
+    },
+    template: `
+      <ul>
+        <template
+          v-for="(item, index) in listArray"
+          :key="index+item"
+        >
+          <li v-if="item != 'lisi'">
+            {{index}} -- {{ item }}
+          </li>
+        </template>
+      </ul>
+    `
+    // 以上DOM结构不符合HTML语法
+  })
+
+  const vm = app.mount("#app")
+</script>
+
+</html>

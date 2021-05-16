@@ -1,0 +1,53 @@
+<!--
+    官方不建议使用索引index为key值，但此时又为了保持唯一性，所以这里使用了index+item进行绑定key值
+
+    因为用index为key值的时候，整个列表都被重新渲染来，它会降低页面的性能，在数据量变多的时候，用户用起来会变的卡顿
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo17</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        listArray: ['zhagnsan', 'lisi', 'wangwu'],
+        listObject: {
+          One: '张三',
+          Two: '李四',
+          Three: '王五'
+        }
+      }
+    },
+    methods: {
+      handleAdd() {
+        this.listArray.push('zhaoliu')
+      }
+    },
+    template: `
+      <button @click="handleAdd">添加一个人</button>
+      <ul>
+        <li v-for="(item, index) in listArray" :key="index+item">{{index}} -- {{ item }}</li>
+      </ul>
+      <hr />
+      <ul>
+        <li v-for="(value, key, index) in listObject" :key="index+key">
+          {{index}} - {{key}} - {{value}}
+        </li>
+      </ul>
+    `
+  })
+
+  const vm = app.mount("#app")
+</script>
+
+</html>

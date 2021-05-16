@@ -1,0 +1,51 @@
+<!--
+  v-show看起来和v-if语法的功能基本一样，但其实他们无论是灵活性还是功能都是有区别的。
+
+  v-if更加灵活，可以增加多个判断，比如v-else-iif和else，而v-show不具备这样的灵活性。
+
+  v-show控制DOM元素显示，其实控制的是css样式，也就是display:noe。现在你可以把data的值修改为false，然后刷新浏览器，打开浏览器调试器的Elements选项卡，就可以清楚的看到，这时候<h2>标签上的style样式就是display:none。
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo16</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        show: false
+      }
+    },
+    template: `
+      <div v-show="show">JavaScript高级程序设计</div>
+    `
+  })
+
+  const vm = app.mount("#app")
+</script>
+
+<style>
+  .red {
+    color: red
+  }
+
+  .green {
+    color: green
+  }
+
+  .background {
+    background-color: yellow;
+  }
+</style>
+
+</html>
