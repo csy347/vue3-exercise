@@ -1,0 +1,54 @@
+<!--
+  - enter
+  - tab
+  - delete
+  - esc
+  - up
+  - down
+  - left
+  - right
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo21</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+
+  <div id="app"></div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+        }
+      },
+      methods: {
+        handleKeyDown() {
+          console.log('keydown...')
+        },
+        handleKeyDown1() {
+          console.log('keydown enter')
+        }
+      },
+      template: `
+        <div>
+          <input @keydown="handleKeyDown" />
+          <input @keydown.enter="handleKeyDown1" />
+        </div>
+      `
+    })
+
+    const vm = app.mount('#app')
+  </script>
+
+</body>
+
+</html>

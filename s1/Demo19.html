@@ -1,5 +1,8 @@
 <!--
   事件中的event对象
+
+  如果模板中一次触发两个事件方法，需要用,逗号，把事件隔开，然后每个事件后边必须加上()才能起作用
+  <button @click="handleBtnClick(), handleBtnClick2()">...</button>
  -->
 
 <!DOCTYPE html>
@@ -28,6 +31,17 @@
         handleAddCountClick(event) {
           this.count++
           console.log(event)
+          console.log(event.target)
+          /**
+           * event.target
+           * event.srcElement
+           * event.screenX
+           * event.offsetX
+           * event.pageX
+           * event.x
+           * event.type
+           * event.which
+           */
         }
       },
       template: `
