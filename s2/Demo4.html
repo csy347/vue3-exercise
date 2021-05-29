@@ -1,9 +1,3 @@
-<!--
-  - 父组件向子组件传值（静态传值）
-  - 动态传值
-  - 参数为函数时的用法
- -->
-
 <!-- <!DOCTYPE html>
 <html lang="en">
 
@@ -11,43 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo3</title>
-  <script src="../lib/vue@3.0.4.js"></script>
-</head>
-
-<body>
-  <div id="app"></div>
-
-  <script>
-    const app = Vue.createApp({
-      template: `
-        <div>JavaScript高级程序设计</div>
-        <Child name="张三" />
-      `
-    })
-
-    app.component('Child', {
-      props: ['name'],
-      template: `
-        <div>{{ name }}</div>
-      `
-    })
-
-    const vm = app.mount('#app')
-  </script>
-</body>
-
-</html> -->
-
-<!-- 动态传值 -->
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo3</title>
+  <title>Demo4</title>
   <script src="../lib/vue@3.0.4.js"></script>
 </head>
 
@@ -58,48 +16,7 @@
     const app = Vue.createApp({
       data() {
         return {
-          name: 'zhangsan'
-        }
-      },
-      template: `
-        <div>JavaScript高级程序设计</div>
-        <Child :name="name" />
-      `
-    })
-
-    app.component('Child', {
-      props: ['name'],
-      template: `
-        <div>{{ typeof name }}</div>
-      `
-    })
-
-    const vm = app.mount('#app')
-  </script>
-</body>
-
-</html> -->
-
-<!-- 参数为函数时 -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo3</title>
-  <script src="../lib/vue@3.0.4.js"></script>
-</head>
-
-<body>
-  <div id="app"></div>
-
-  <script>
-    const app = Vue.createApp({
-      data() {
-        return {
-          name: 123,
+          name: '123',
           pay: () => {
             alert('给你100元')
           }
@@ -108,27 +25,68 @@
       template: `
         <div>JavaScript高级程序设计</div>
         <Child :name="name" />
-        <xiao-jie-jie :pay="pay" />
       `
     })
 
     app.component('Child', {
-      props: ['name'],
+      props: {
+        name: String
+      },
       template: `
         <div>{{ name }}</div>
       `
     })
 
-    app.component('XiaoJieJie', {
-      props: ['pay'],
-      methods: {
-        handleClick() {
-          alert('请付钱...')
-          this.pay()
+    const vm = app.mount('#app')
+  </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo4</title>
+  <script src="../lib/vue@3.0.4.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          name: 'xxxx',
+          pay: () => {
+            alert('给你100元')
+          }
         }
       },
       template: `
-        <div @click="this.handleClick">和小姐姐打招呼～</div>
+        <div>JavaScript高级程序设计</div>
+        <Child :name="name" />
+      `
+    })
+
+    app.component('Child', {
+      props: {
+        name: {
+          type: String,
+          required: true,
+          default: 'xxx',
+          validator: function (value) {
+            // console.log(value.search('xxx'))
+            return value.search('xxx') != -1 // 没有找到时显示-1
+          }
+        }
+      },
+      template: `
+        <div>{{ name }}</div>
       `
     })
 
